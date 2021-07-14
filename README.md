@@ -1,23 +1,24 @@
-#FRONTEND CHALLENGE
+**FRONTEND CHALLENGE**
 
-#I. Add arithmetic operators (add, subtract, multiply, divide) to make the following expressions true. You can use any parentheses
-you’d like. You don’t need to write any code for this question.
+**I. Add arithmetic operators (add, subtract, multiply, divide) to make the following expressions true. You can use any parentheses
+you’d like. You don’t need to write any code for this question.**
 3 1 3 9 = 12
 
-Solution
+**Solution**
 (3 + (1/3)) + 9
 
 
-#II. Write a function in Kotlin to determine whether two strings are anagrams or not (examples of anagrams: debit card/bad
-credit, punishments/nine thumps, etc.)
+**II. Write a function in Kotlin to determine whether two strings are anagrams or not (examples of anagrams: debit card/bad
+credit, punishments/nine thumps, etc.)**
 
  fun isAnagram(str1: String, str2: String) = Arrays.equals(str1.chars().sorted().toArray(),
             str2.chars().sorted().toArray())
 
 
-#III. Write a function in Kotlin to generate the nth Fibonacci number (1, 1, 2, 3, 5, 8, 13, 21, 34)
+**III. Write a function in Kotlin to generate the nth Fibonacci number (1, 1, 2, 3, 5, 8, 13, 21, 34)**
 
 A. recursive approach
+
 tailrec fun fibonacci(n: Int, a: Int = 0, b: Int = 1): Int =
         when (n) {
             0 -> a
@@ -27,6 +28,7 @@ tailrec fun fibonacci(n: Int, a: Int = 0, b: Int = 1): Int =
 
 
 B. iterative approach
+
 fun fibonacci(n: Long): Long {
         if (n < 2) return n
         var minusOne: Long = 1
@@ -51,4 +53,4 @@ V. Please use stable versions for IDE used
 VI. Please share your answers in a public repo in Github, and delete the task after we review your challenge. Best of luck!
 
 
-This project is based on Android Architecture Blueprints (https://github.com/googlesamples/android-architecture)
+NOTE: This project is based on Android Architecture Blueprints (https://github.com/googlesamples/android-architecture)
