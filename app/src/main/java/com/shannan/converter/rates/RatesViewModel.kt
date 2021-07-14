@@ -15,14 +15,11 @@
  */
 package com.shannan.converter.rates
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.map
-import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import com.shannan.converter.Event
 import com.shannan.converter.data.Rate
@@ -53,7 +50,7 @@ class RatesViewModel(
         when (it) {
             is Success -> {
                 dataLoading.value = false
-                it.data
+                setBaseCurrency(it.data)
             }
             is Result.Error -> {
                 dataLoading.value = false
@@ -118,5 +115,17 @@ class RatesViewModel(
 
     fun refresh() {
         loadRates()
+    }
+
+    private fun setBaseCurrency(list: List<Rate>): List<Rate> {
+        val baseIndex = list.indexOfFirst { it.currency == "EUR" }
+        if (baseIndex > -1){
+            val base = list[baseIndex]
+            val newList = arrayListOf<Rate>()
+            newList.add(base)
+            newList.addAll(list)
+            return newList
+        }
+        return list
     }
 }
