@@ -1,63 +1,54 @@
-# Android Architecture Blueprints - Use Cases/Interactors in Domain layer
-### Summary
-This sample is written in Kotlin and based on the
-[master](https://github.com/googlesamples/android-architecture/tree/master) branch which uses
-the following Architecture Components:
- - ViewModel
- - LiveData
- - Data Binding
- - Navigation
- - Room
+#FRONTEND CHALLENGE
 
-It introduces a new layer called `domain` where the Use Cases (also called Interactors) live. The 
-`domain` layer is where the business logic happens, which is the code that determines what
-the app _does_ with the data coming from the repository before it's exposed to the UI for
-display.
+#I. Add arithmetic operators (add, subtract, multiply, divide) to make the following expressions true. You can use any parentheses
+you’d like. You don’t need to write any code for this question.
+3 1 3 9 = 12
 
-The todo app is too simple to showcase a complete representation of 
-[Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html), 
-but it adheres to some of its rules, which work well in a modern Android application: separation
-of concerns, high level of abstraction and the dependency rule, which in our case means that layers 
-only know about what's directly underneath them:
- - Presentation layer knows about use cases (domain layer).
- - Domain layer knows about repository (data layer) but not the Presentation layer.
- - Data layer doesn't know about domain or presentation layers.
-
-This allows for easier testing and maintenance and recommended for bigger projects (alongside 
-modularization).
-
-### Differences with master
-
- - ViewModels don't receive a repository but a set of Use Cases, which are reused throughout the
- presentation layer.
- - Business logic that was present in ViewModels is moved to Use Cases. This is important because
- ViewModels tend to grow quickly in size in real applications. 
+Solution
+(3 + (1/3)) + 9
 
 
-### Key files
+#II. Write a function in Kotlin to determine whether two strings are anagrams or not (examples of anagrams: debit card/bad
+credit, punishments/nine thumps, etc.)
 
-The only relevant use case in this example is `GetTasksUseCase`. It contains some business logic
-that used to be in the ViewModel. It's decoupled from the view so it can be thoroughly unit tested
-in `GetTasksUseCaseTest`.
-
-### License
+ fun isAnagram(str1: String, str2: String) = Arrays.equals(str1.chars().sorted().toArray(),
+            str2.chars().sorted().toArray())
 
 
-```
-Copyright 2019 Google, Inc.
+#III. Write a function in Kotlin to generate the nth Fibonacci number (1, 1, 2, 3, 5, 8, 13, 21, 34)
 
-Licensed to the Apache Software Foundation (ASF) under one or more contributor
-license agreements. See the NOTICE file distributed with this work for
-additional information regarding copyright ownership. The ASF licenses this
-file to you under the Apache License, Version 2.0 (the "License"); you may not
-use this file except in compliance with the License. You may obtain a copy of
-the License at
+A. recursive approach
+tailrec fun fibonacci(n: Int, a: Int = 0, b: Int = 1): Int =
+        when (n) {
+            0 -> a
+            1 -> b
+            else -> fibonacci(n - 1, b, a + b)
+        }
 
-http://www.apache.org/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-License for the specific language governing permissions and limitations under
-the License.
-```
+B. iterative approach
+fun fibonacci(n: Long): Long {
+        if (n < 2) return n
+        var minusOne: Long = 1
+        var minusTwo: Long = 0
+        var result = minusOne
+        for (i in 2..n) {
+            result = minusOne + minusTwo
+            minusTwo = minusOne
+            minusOne = result
+        }
+        return result
+    }
+
+IV. Create a currency converter by utilizing data from the fixer.io API.
+The currency converter must use EUR as the base currency (displayed at top) and display the currency rates as a list. When a user taps on
+a currency, a calculation view should appear with the selected currency and the base currency. Only the base currency field should be
+editable.
+Feel free to use any open source libraries.
+(Consider this project as if you were developing a component within a large-scaled project)
+
+V. Please use stable versions for IDE used
+VI. Please share your answers in a public repo in Github, and delete the task after we review your challenge. Best of luck!
+
+
+This project is based on Android Architecture Blueprints (https://github.com/googlesamples/android-architecture)
