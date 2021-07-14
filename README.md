@@ -10,25 +10,26 @@ you’d like. You don’t need to write any code for this question.**
 
 **II. Write a function in Kotlin to determine whether two strings are anagrams or not (examples of anagrams: debit card/bad
 credit, punishments/nine thumps, etc.)**
-
+```
  fun isAnagram(str1: String, str2: String) = Arrays.equals(str1.chars().sorted().toArray(),
             str2.chars().sorted().toArray())
-
+```
 
 **III. Write a function in Kotlin to generate the nth Fibonacci number (1, 1, 2, 3, 5, 8, 13, 21, 34)**
 
 A. recursive approach
 
+```
 tailrec fun fibonacci(n: Int, a: Int = 0, b: Int = 1): Int =
         when (n) {
             0 -> a
             1 -> b
             else -> fibonacci(n - 1, b, a + b)
         }
-
+```
 
 B. iterative approach
-
+```
 fun fibonacci(n: Long): Long {
         if (n < 2) return n
         var minusOne: Long = 1
@@ -41,6 +42,7 @@ fun fibonacci(n: Long): Long {
         }
         return result
     }
+```
 
 IV. Create a currency converter by utilizing data from the fixer.io API.
 The currency converter must use EUR as the base currency (displayed at top) and display the currency rates as a list. When a user taps on
