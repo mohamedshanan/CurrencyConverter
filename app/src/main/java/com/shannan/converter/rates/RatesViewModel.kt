@@ -72,16 +72,8 @@ class RatesViewModel(
     private val _snackbarText = MutableLiveData<Event<Int>>()
     val snackbarText: LiveData<Event<Int>> = _snackbarText
 
-    // Not used at the moment
-    private val isDataLoadingError = _items.map { it !is Success }
-
     private val _openConverterEvent = MutableLiveData<Event<String>>()
     val openConverterEvent: LiveData<Event<String>> = _openConverterEvent
-
-    private val _base = MutableLiveData<String>()
-    val baseCurrency : LiveData<String> = _base
-
-    private var resultMessageShown: Boolean = false
 
     // This LiveData depends on another so we can use a transformation.
     val empty: LiveData<Boolean> = _items.map {
@@ -90,7 +82,7 @@ class RatesViewModel(
 
     init {
         // Set initial state
-        _noRatesIconRes.value = R.drawable.logo_no_fill
+        _noRatesIconRes.value = R.mipmap.ic_no_money
         loadRates()
     }
 
@@ -111,10 +103,6 @@ class RatesViewModel(
         viewModelScope.launch {
             getRatesUseCase()
         }
-    }
-
-    fun refresh() {
-        loadRates()
     }
 
     private fun setBaseCurrency(list: List<Rate>): List<Rate> {

@@ -23,7 +23,7 @@
     <application
         android:allowBackup="false"
         android:name="com.shannan.converter.ConverterApplication"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
